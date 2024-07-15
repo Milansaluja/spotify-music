@@ -17,7 +17,7 @@ function formatTime(seconds) {
 
 async function getSongs(folder) {
     currFolder = folder;
-    let a = await fetch(`http://127.0.0.1:5500/${folder}/`)
+    let a = await fetch(`${window.location.origin}/${folder}/`)
     let response = await a.text();
     // console.log(response)
     // by doing a.text() we cannot get what we actually want,i think because it is a part of librabry,so we create one div here and insert response inside it.
@@ -77,7 +77,7 @@ const playMusic = (track, pause = false) => {
 }
 
 async function displayAlbums() {
-    let a = await fetch(`http://127.0.0.1:5500/songs/`)
+    let a = await fetch(`${window.location.origin}/songs/`)
     let response = await a.text();
     // console.log(response)
     let div = document.createElement("div");
@@ -96,7 +96,7 @@ async function displayAlbums() {
             // console.log(folder)
 
             //get the metadeta of the folder.
-            let a = await fetch(`http://127.0.0.1:5500/songs/${folder}/info.json`)
+            let a = await fetch(`${window.location.origin}/songs/${folder}/info.json`)
             let response = await a.json();
             // console.log(response)
             cardContainer.innerHTML = cardContainer.innerHTML + ` <div data-folder="${folder}" class="card">
